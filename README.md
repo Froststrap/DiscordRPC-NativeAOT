@@ -134,8 +134,8 @@ Replace `win-x64` with the appropriate runtime identifier for your target platfo
 
 Two workflows handle releases:
 
-1. `.github/workflows/build.yml` runs on every push and pull request. It restores, builds, tests, and packs the project. When you push a tag that starts with `v` (for example `v1.0.0`) and the build succeeds, it also creates the matching GitHub Release.
-2. `.github/workflows/publish.yml` runs after `build.yml` finishes. When the trigger was a `v*` tag and the build succeeded, it packs and pushes the package to NuGet.org using OIDC trusted publishing (no stored API key).
+1. `.github/workflows/build.yml` runs on every push and pull request. It restores, builds, tests, and packs the project. When you push a tag that starts with `v` (for example `v1.0.0`) and the build succeeds, it creates a **draft** GitHub Release for that tag.
+2. `.github/workflows/publish.yml` runs when a GitHub Release is published. It packs and pushes the package to NuGet.org using OIDC trusted publishing (no stored API key).
 
 To release a new version:
 
@@ -148,7 +148,7 @@ To release a new version:
    git push origin v1.0.0
    ```
 
-That creates the GitHub Release and publishes the package automatically.
+This builds and tests the code and creates a **draft** release. Review the draft, then click **Publish release** — that publishes the package to NuGet.org automatically.
 
 Before the first automated release, add a trusted publishing policy on [nuget.org](https://www.nuget.org) pointing at this repository and the `publish.yml` workflow file, and set a `NUGET_USER` repository secret in GitHub to the nuget.org username of the person who created that policy.
 
