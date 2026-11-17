@@ -27,7 +27,7 @@ namespace DiscordRPC
             }
         }
 
-        /// <summary>Inernal inner state string</summary>
+        /// <summary>Internal inner state string</summary>
         protected internal string _state;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace DiscordRPC
                     throw new ArgumentException("Url must be a valid URI");
             }
         }
-        /// <summary>Inernal inner state URL string</summary>
+        /// <summary>Internal inner state URL string</summary>
         protected internal string _stateUrl;
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace DiscordRPC
                     throw new StringOutOfRangeException(128);
             }
         }
-        /// <summary>Inernal inner detail string</summary>
+        /// <summary>Internal inner detail string</summary>
         protected internal string _details;
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace DiscordRPC
                     throw new ArgumentException("Url must be a valid URI");
             }
         }
-        /// <summary>Inernal inner detail URL string</summary>
+        /// <summary>Internal inner detail URL string</summary>
         protected internal string _detailsUrl;
 
         /// <summary>
@@ -652,10 +652,10 @@ namespace DiscordRPC
         /// <summary>
         /// Operator that converts a presence into a boolean for null checks.
         /// </summary>
-        /// <param name="presesnce"></param>
-        public static implicit operator bool(RichPresence presesnce)
+        /// <param name="presence"></param>
+        public static implicit operator bool(RichPresence presence)
         {
-            return presesnce != null;
+            return presence != null;
         }
     }
 

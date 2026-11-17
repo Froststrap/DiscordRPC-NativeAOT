@@ -40,7 +40,7 @@ namespace DiscordRPC.Registry
             string defaultIcon = location;
             string command = location;
 
-            //We have a steam ID, so attempt to replce the command with a steam command
+            //We have a steam ID, so attempt to replace the command with a steam command
             if (info.UsingSteamApp)
             {
                 //Try to get the steam location. If found, set the command to a run steam instead.

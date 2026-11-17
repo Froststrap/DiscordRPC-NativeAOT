@@ -17,7 +17,7 @@ namespace DiscordRPC.Message
         Close,
 
         /// <summary>
-        /// A error has occured during the transmission of a message. For example, if a bad Rich Presence payload is sent, this event will be called explaining what went wrong.
+        /// A error has occurred during the transmission of a message. For example, if a bad Rich Presence payload is sent, this event will be called explaining what went wrong.
         /// </summary>
         Error,
 
@@ -52,7 +52,7 @@ namespace DiscordRPC.Message
         JoinRequest,
 
         /// <summary>
-        /// The connection to the discord client was succesfull. This is called before <see cref="Ready"/>.
+        /// The connection to the discord client was successful. This is called before <see cref="Ready"/>.
         /// </summary>
         ConnectionEstablished,
 

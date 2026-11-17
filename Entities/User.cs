@@ -428,7 +428,7 @@ namespace DiscordRPC
         /// <summary>
         /// Returns the file extension of the specified format.
         /// </summary>
-        /// <param name="format">The format to get the extention off</param>
+        /// <param name="format">The format to get the extension off</param>
         /// <returns>Returns a period prefixed file extension.</returns>
         public string GetAvatarExtension(AvatarFormat format)
         {

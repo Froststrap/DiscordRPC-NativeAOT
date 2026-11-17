@@ -22,7 +22,7 @@ namespace DiscordRPC.Logging
         /// <param name="args"></param>
         public void Trace(string message, params object[] args)
         {
-            //Null Logger, so no messages are acutally sent
+            //Null Logger, so no messages are actually sent
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace DiscordRPC.Logging
         /// <param name="args"></param>
         public void Info(string message, params object[] args)
         {
-            //Null Logger, so no messages are acutally sent
+            //Null Logger, so no messages are actually sent
         }
 
         /// <summary>
@@ -42,17 +42,17 @@ namespace DiscordRPC.Logging
         /// <param name="args"></param>
         public void Warning(string message, params object[] args)
         {
-            //Null Logger, so no messages are acutally sent 
+            //Null Logger, so no messages are actually sent 
         }
 
         /// <summary>
-        /// Error log messsages
+        /// Error log messages
         /// </summary>
         /// <param name="message"></param>
         /// <param name="args"></param>
         public void Error(string message, params object[] args)
         {
-            //Null Logger, so no messages are acutally sent
+            //Null Logger, so no messages are actually sent
         }
     }
 }

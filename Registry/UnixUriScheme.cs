@@ -43,7 +43,7 @@ namespace DiscordRPC.Registry
             string command = null;
             if (info.UsingSteamApp)
             {
-                //A steam command isntead
+                //A steam command instead
                 command = $"xdg-open steam://rungameid/{info.SteamAppID}";
             }
             else
@@ -99,7 +99,7 @@ MimeType=x-scheme-handler/discord-{2}";
             Process process = Process.Start("xdg-mime", arguments);
             process.WaitForExit();
 
-            //Return if succesful
+            //Return if successful
             return process.ExitCode >= 0;
         }
     }

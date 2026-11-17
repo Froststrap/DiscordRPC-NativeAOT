@@ -21,7 +21,7 @@ namespace DiscordRPC.Events
     public delegate void OnCloseEvent(object sender, CloseMessage args);
 
     /// <summary>
-    /// Called when a error has occured during the transmission of a message. For example, if a bad Rich Presence payload is sent, this event will be called explaining what went wrong.
+    /// Called when a error has occurred during the transmission of a message. For example, if a bad Rich Presence payload is sent, this event will be called explaining what went wrong.
     /// </summary>
     /// <param name="sender">The Discord client handler that sent this event</param>
     /// <param name="args">The arguments supplied with the event</param>
@@ -72,7 +72,7 @@ namespace DiscordRPC.Events
 
 
     /// <summary>
-    /// The connection to the discord client was succesfull. This is called before <see cref="OnReadyEvent"/>.
+    /// The connection to the discord client was successful. This is called before <see cref="OnReadyEvent"/>.
     /// </summary>
     /// <param name="sender">The Discord client handler that sent this event</param>
     /// <param name="args">The arguments supplied with the event</param>

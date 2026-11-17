@@ -42,7 +42,7 @@ namespace DiscordRPC
         public int Size { get; set; }
 
         /// <summary>
-        /// The maxium size of the party / lobby / group. This is required to be larger than <see cref="Size"/>. If it is smaller than the current party size, it will automatically be set too <see cref="Size"/> when the presence is sent.
+        /// The maximum size of the party / lobby / group. This is required to be larger than <see cref="Size"/>. If it is smaller than the current party size, it will automatically be set too <see cref="Size"/> when the presence is sent.
         /// </summary>
         [JsonIgnore]
         public int Max { get; set; }

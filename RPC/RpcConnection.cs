@@ -107,7 +107,7 @@ namespace DiscordRPC.RPC
         private Thread thread;                          //The current thread
         private INamedPipeClient namedPipe;
 
-        private int targetPipe;                             //The pipe to taget. Leave as -1 for any available pipe.
+        private int targetPipe;                             //The pipe to target. Leave as -1 for any available pipe.
 
         private readonly object l_rtqueue = new object();   //Lock for the send queue
         private readonly uint _maxRtQueueSize;
@@ -318,7 +318,7 @@ namespace DiscordRPC.RPC
                         EstablishHandshake();
                         Logger.Trace("Connection Established. Starting reading loop...");
 
-                        //Continously iterate, waiting for the frame
+                        //Continuously iterate, waiting for the frame
                         //We want to only stop reading if the inside tells us (mainloop), if we are aborting (abort) or the pipe disconnects
                         // We dont want to exit on a shutdown, as we still have information
                         PipeFrame frame;
@@ -483,11 +483,11 @@ namespace DiscordRPC.RPC
                 //We have an error
                 Logger.Error("Error received from the RPC");
 
-                //Create the event objetc and push it to the queue
+                //Create the event object and push it to the queue
                 ErrorMessage err = response.GetObject<ErrorMessage>();
                 Logger.Error("Server responded with an error message: ({0}) {1}", err.Code.ToString(), err.Message);
 
-                //Enqueue the messsage and then end
+                //Enqueue the message and then end
                 EnqueueMessage(err);
                 return;
             }
@@ -603,7 +603,7 @@ namespace DiscordRPC.RPC
 
         #endregion
 
-        #region Writting
+        #region Writing
 
         private void ProcessCommandQueue()
         {
@@ -617,7 +617,7 @@ namespace DiscordRPC.RPC
             if (aborting)
                 Logger.Warning("We have been told to write a queue but we have also been aborted.");
 
-            //Prepare some variabels we will clone into with locks
+            //Prepare some variables we will clone into with locks
             bool needsWriting = true;
             ICommand item = null;
 
@@ -788,7 +788,7 @@ namespace DiscordRPC.RPC
         }
 
         /// <summary>
-        /// Sets the current state of the pipe, locking the l_states object for thread saftey.
+        /// Sets the current state of the pipe, locking the l_states object for thread safety.
         /// </summary>
         /// <param name="state">The state to set it too.</param>
         private void SetConnectionState(RpcState state)

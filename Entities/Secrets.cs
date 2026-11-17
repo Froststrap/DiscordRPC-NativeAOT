@@ -19,7 +19,7 @@ namespace DiscordRPC
         /// <para>This cannot be null and must be supplied for the  Join / Spectate feature to work.</para>
         /// <para>Max Length of 128 characters</para>
         /// </summary>
-        [Obsolete("This feature has been deprecated my Mason in issue #152 on the offical library. Was originally used as a Notify Me feature, it has been replaced with Join / Spectate.", true)]
+        [Obsolete("This feature has been deprecated my Mason in issue #152 on the official library. Was originally used as a Notify Me feature, it has been replaced with Join / Spectate.", true)]
         [JsonIgnore]
         public string MatchSecret;
 

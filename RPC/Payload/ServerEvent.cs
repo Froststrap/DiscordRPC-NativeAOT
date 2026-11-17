@@ -44,52 +44,52 @@ namespace DiscordRPC.RPC.Payload
 
 #if INCLUDE_FULL_RPC
         //Old things that are obsolete
-        [Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+        [Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("GUILD_STATUS")]
         GuildStatus,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("GUILD_CREATE")]
         GuildCreate,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("CHANNEL_CREATE")]
         ChannelCreate,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("VOICE_CHANNEL_SELECT")]
         VoiceChannelSelect,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("VOICE_STATE_CREATED")]
         VoiceStateCreated,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("VOICE_STATE_UPDATED")]
         VoiceStateUpdated,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("VOICE_STATE_DELETE")]
         VoiceStateDelete,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("VOICE_SETTINGS_UPDATE")]
         VoiceSettingsUpdate,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("VOICE_CONNECTION_STATUS")]
         VoiceConnectionStatus,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("SPEAKING_START")]
         SpeakingStart,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("SPEAKING_STOP")]
         SpeakingStop,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("MESSAGE_CREATE")]
         MessageCreate,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("MESSAGE_UPDATE")]
         MessageUpdate,
-		[Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+		[Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("MESSAGE_DELETE")]
         MessageDelete,
-        [Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+        [Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("NOTIFICATION_CREATE")]
         NotificationCreate,
-        [Obsolete("This value is appart of the RPC API and is not supported by this library.", true)]
+        [Obsolete("This value is apart of the RPC API and is not supported by this library.", true)]
         [JsonStringEnumMemberName("CAPTURE_SHORTCUT_CHANGE")]
         CaptureShortcutChange
 #endif

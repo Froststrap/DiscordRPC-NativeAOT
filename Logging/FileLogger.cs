@@ -77,7 +77,7 @@ namespace DiscordRPC.Logging
         }
 
         /// <summary>
-        /// Error log messsages
+        /// Error log messages
         /// </summary>
         /// <param name="message"></param>
         /// <param name="args"></param>

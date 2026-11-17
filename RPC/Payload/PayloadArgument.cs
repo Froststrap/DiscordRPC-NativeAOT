@@ -8,7 +8,7 @@ namespace DiscordRPC.RPC.Payload
     /// <summary>
     /// The payload that is sent by the client to discord for events such as setting the rich presence.
     /// <para>
-    /// SetPrecense
+    /// SetPresence
     /// </para>
     /// </summary>
     internal class ArgumentPayload : IPayload
@@ -27,7 +27,7 @@ namespace DiscordRPC.RPC.Payload
         }
 
         /// <summary>
-        /// Sets the obejct stored within the data.
+        /// Sets the object stored within the data.
         /// </summary>
         /// <param name="obj"></param>
         public void SetObject(object obj)

@@ -175,7 +175,7 @@ namespace DiscordRPC.IO
                     //Make sure the stream is valid
                     if (_stream == null || !_stream.IsConnected) return;
 
-                    Logger.Trace("Begining Read of {0} bytes", _buffer.Length);
+                    Logger.Trace("Beginning Read of {0} bytes", _buffer.Length);
                     _stream.BeginRead(_buffer, 0, _buffer.Length, new AsyncCallback(EndReadStream), _stream.IsConnected);
                 }
             }
@@ -192,7 +192,7 @@ namespace DiscordRPC.IO
             }
             catch (Exception e)
             {
-                Logger.Error("An exception occured while starting to read a stream: {0}", e.Message);
+                Logger.Error("An exception occurred while starting to read a stream: {0}", e.Message);
                 Logger.Error(e.StackTrace);
             }
         }
@@ -214,7 +214,7 @@ namespace DiscordRPC.IO
                     //Make sure the stream is still valid
                     if (_stream == null || !_stream.IsConnected) return;
 
-                    //Read our btyes
+                    //Read our bytes
                     bytes = _stream.EndRead(callback);
                 }
             }
@@ -230,12 +230,12 @@ namespace DiscordRPC.IO
             }
             catch (ObjectDisposedException)
             {
-                Logger.Warning("Attemped to end reading from a disposed pipe");
+                Logger.Warning("Attempted to end reading from a disposed pipe");
                 return;
             }
             catch (Exception e)
             {
-                Logger.Error("An exception occured while ending a read of a stream: {0}", e.Message);
+                Logger.Error("An exception occurred while ending a read of a stream: {0}", e.Message);
                 Logger.Error(e.StackTrace);
                 return;
             }
@@ -269,7 +269,7 @@ namespace DiscordRPC.IO
                     }
                     catch (Exception e)
                     {
-                        Logger.Error("A exception has occured while trying to parse the pipe data: {0}", e.Message);
+                        Logger.Error("A exception has occurred while trying to parse the pipe data: {0}", e.Message);
                         Close();
                     }
                 }
@@ -309,7 +309,7 @@ namespace DiscordRPC.IO
                     return false;
                 }
 
-                //Return the dequed frame
+                //Return the dequeued frame
                 frame = _framequeue.Dequeue();
                 return true;
             }
@@ -361,7 +361,7 @@ namespace DiscordRPC.IO
         /// </summary>
         public void Close()
         {
-            //If we are already closed, jsut exit
+            //If we are already closed, just exit
             if (_isClosed)
             {
                 Logger.Warning("Tried to close a already closed pipe.");

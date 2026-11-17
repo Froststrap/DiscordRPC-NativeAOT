@@ -14,7 +14,7 @@ namespace DiscordRPC.IO
     public struct PipeFrame : IEquatable<PipeFrame>
     {
         /// <summary>
-        /// The maxium size of a pipe frame (16kb).
+        /// The maximum size of a pipe frame (16kb).
         /// </summary>
         public static readonly int MAX_SIZE = 16 * 1024;
 

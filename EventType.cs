@@ -6,7 +6,7 @@ using System.Text;
 namespace DiscordRPC
 {
     /// <summary>
-    /// The type of event receieved by the RPC. A flag type that can be combined.
+    /// The type of event received by the RPC. A flag type that can be combined.
     /// </summary>
     [System.Flags]
     public enum EventType

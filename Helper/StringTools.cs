@@ -5,7 +5,7 @@ using System.Text;
 namespace DiscordRPC.Helper
 {
     /// <summary>
-    /// Collectin of helpful string extensions
+    /// Collection of helpful string extensions
     /// </summary>
     public static class StringTools
     {
