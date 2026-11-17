@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Discord RPC")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Froststrap.DiscordRPC")]
+[assembly: AssemblyDescription("Native AOT compatible Discord Rich Presence client for .NET")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Discord RPC")]
-[assembly: AssemblyCopyright("Copyright ?  2021")]
+[assembly: AssemblyCompany("Froststrap")]
+[assembly: AssemblyProduct("Froststrap.DiscordRPC")]
+[assembly: AssemblyCopyright("Copyright (c) Lachee, Froststrap")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

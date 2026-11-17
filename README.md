@@ -1,29 +1,28 @@
-# DiscordRPC-NativeAOT
+# DiscordRPC
 
-[English](#english) | [中文](#中文)
+A high-performance, Native AOT-compatible Discord Rich Presence client for .NET 10.0.
 
-## English
+## Features
 
-A high-performance, **Native AOT compatible** Discord Rich Presence client for .NET 9.0.
+- Native AOT compatibility with zero reflection.
+- System.Text.Json source generation for JSON serialization and deserialization.
+- No external dependencies.
+- Cross-platform support for Windows, Linux, and macOS.
+- Custom JSON converters for Discord API compatibility.
+- Improved named pipe connection handling with a connection timeout.
+- Compatible with trimming.
 
-[![NuGet](https://img.shields.io/nuget/v/DiscordRPC-NativeAOT.svg)](https://www.nuget.org/packages/DiscordRPC-NativeAOT)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Installation
 
-## ✨ Features
-
-- ✅ **Native AOT Compatible** - Zero reflection, fully trimmable
-- ✅ **System.Text.Json Source Generation** - Optimized JSON serialization
-- ✅ **Zero External Dependencies** - No third-party libraries required
-- ✅ **Cross-Platform** - Windows, Linux, macOS support
-- ✅ **Fixed Discord API Compatibility** - Custom converters for Discord's string-to-number fields
-
-## 📦 Installation
+Install the package using the .NET CLI:
 
 ```bash
-dotnet add package DiscordRPC-NativeAOT
-```
+dotnet add package Froststrap.DiscordRPC
+````
 
-## 🚀 Quick Start
+## Usage
+
+csharp
 
 ```csharp
 using DiscordRPC;
@@ -58,208 +57,103 @@ client.SetPresence(new RichPresence()
     }
 });
 
-// Keep application running
+// Keep the application running
 Console.ReadLine();
 client.Dispose();
 ```
 
-## 🔧 Changes from Original Repository
+Replace `YOUR_APPLICATION_ID` with your Discord application's ID.
 
-This fork is based on [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp) with the following Native AOT compatibility fixes:
+## Changes from the Original Project
 
-### v1.0.1 - Native AOT JSON Deserialization Fixes
+This project is based on [Lachee/discord-rpc-csharp](<https://github.com/Lachee/discord-rpc-csharp>) and includes modifications to support Native AOT and improve compatibility with Discord's API.
 
-**Problem**: Discord API returns certain fields as strings (e.g., `"id":"1164487009784569939"`, `"discriminator":"0"`, `"flags":0`) but the library expects numeric types, causing `System.Text.Json` deserialization failures in Native AOT mode.
+### JSON Deserialization
 
-**Solution**: Added custom JSON converters:
+The original implementation had issues deserializing certain Discord API fields because the API can return numeric values as strings.
 
-1. **`UlongStringConverter`** - Handles Discord snowflake IDs
-   ```csharp
-   // Discord returns: "id":"1164487009784569939"
-   // C# expects: ulong ID
-   ```
+Custom JSON converters have been added to handle these fields:
 
-2. **`IntStringConverter`** - Handles discriminator field
-   ```csharp
-   // Discord returns: "discriminator":"0"
-   // C# expects: int Discriminator
-   ```
+- `UlongStringConverter`: Handles Discord snowflake IDs returned as strings.
+- `IntStringConverter`: Handles discriminator values returned as strings.
+- `EnumStringConverter<T>`: Handles enum fields such as flags and premium\_type.
 
-3. **`EnumStringConverter<T>`** - Handles enum fields (flags, premium_type)
-   ```csharp
-   // Discord returns: "flags":0 or "flags":"0"
-   // C# expects: Flag Flags (enum)
-   ```
+These converters improve compatibility with Discord's API while supporting source-generated JSON serialization.
 
-4. **Named Pipe Timeout Fix** - Added 5-second connection timeout to prevent infinite blocking:
-   ```csharp
-   _stream.Connect(5000); // Was: Connect(0)
-   ```
+### Named Pipe Connection Timeout
 
-5. **Enum Serialization** - Added `JsonStringEnumConverter<T>` to `Command` and `ServerEvent` enums for proper Discord protocol compatibility.
+A five-second timeout has been added to named pipe connections to prevent indefinite blocking.
 
-### Key Differences from Original
-
-| Feature | Original | This Fork |
-|---------|----------|-----------|
-| Native AOT | ❌ Not supported | ✅ Fully compatible |
-| JSON Library | Newtonsoft.Json | System.Text.Json (Source Gen) |
-| User Field Types | Runtime conversion | Compile-time converters |
-| Pipe Connection | No timeout | 5-second timeout |
-| Trimming | Not trimmable | Fully trimmable |
-
-## 📋 Requirements
-
-- .NET 9.0 or later
-- Discord Desktop Client running
-
-## 🛠️ Native AOT Publishing
-
-```bash
-dotnet publish -c Release -r win-x64 --self-contained
-```
-
-## 📄 License
-
-MIT License - Same as the original [discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp) project.
-
-## 🙏 Credits
-
-- Original Library: [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp)
-- Native AOT Adaptation: [samse1337](https://github.com/samse1337)
-
-## 🐛 Issues
-
-If you encounter any issues with Native AOT compatibility, please report them on [GitHub Issues](https://github.com/samse1337/DiscordRPC-NativeAOT/issues).
-
----
-
-## 中文
-
-一个高性能、**Native AOT 兼容** 的 Discord Rich Presence 客户端，适用于 .NET 9.0。
-
-[![NuGet](https://img.shields.io/nuget/v/DiscordRPC-NativeAOT.svg)](https://www.nuget.org/packages/DiscordRPC-NativeAOT)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## ✨ 特性
-
-- ✅ **Native AOT 兼容** - 零反射，完全可裁剪
-- ✅ **System.Text.Json 源生成** - 优化的 JSON 序列化
-- ✅ **零外部依赖** - 无需第三方库
-- ✅ **跨平台** - 支持 Windows、Linux、macOS
-- ✅ **修复 Discord API 兼容性** - 自定义转换器处理 Discord 的字符串转数字字段
-
-## 📦 安装
-
-```bash
-dotnet add package DiscordRPC-NativeAOT
-```
-
-## 🚀 快速开始
+csharp
 
 ```csharp
-using DiscordRPC;
-using DiscordRPC.Logging;
-
-var client = new DiscordRpcClient("你的应用ID")
-{
-    Logger = new ConsoleLogger() { Level = LogLevel.Info }
-};
-
-client.OnReady += (sender, e) =>
-{
-    Console.WriteLine($"已连接到 Discord：{e.User.Username}");
-};
-
-client.Initialize();
-
-client.SetPresence(new RichPresence()
-{
-    Details = "正在玩游戏",
-    State = "对战中",
-    Timestamps = new Timestamps()
-    {
-        Start = DateTime.UtcNow
-    },
-    Assets = new Assets()
-    {
-        LargeImageKey = "large_image",
-        LargeImageText = "我的游戏",
-        SmallImageKey = "small_image",
-        SmallImageText = "10 级"
-    }
-});
-
-// 保持程序运行
-Console.ReadLine();
-client.Dispose();
+_stream.Connect(5000);
 ```
 
-## 🔧 与源仓库的改动
+Previously, the connection used:
 
-此 Fork 基于 [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp)，修复了以下 Native AOT 兼容性问题：
+csharp
 
-### v1.0.1 - Native AOT JSON 反序列化修复
+```csharp
+_stream.Connect(0);
+```
 
-**问题**：Discord API 返回某些字段为字符串（如 `"id":"1164487009784569939"`、`"discriminator":"0"`、`"flags":0`），但库期望数值类型，导致在 Native AOT 模式下 `System.Text.Json` 反序列化失败。
+### Enum Serialization
 
-**解决方案**：添加自定义 JSON 转换器：
+`JsonStringEnumConverter<T>` has been added to the `Command` and `ServerEvent` enums to ensure proper Discord protocol serialization.
 
-1. **`UlongStringConverter`** - 处理 Discord 雪花 ID
-   ```csharp
-   // Discord 返回："id":"1164487009784569939"
-   // C# 期望：ulong ID
-   ```
+### Main Differences
 
-2. **`IntStringConverter`** - 处理 discriminator 字段
-   ```csharp
-   // Discord 返回："discriminator":"0"
-   // C# 期望：int Discriminator
-   ```
+| Feature | Original | This Fork |
+| --- | --- | --- |
+| Native AOT | Not supported | Supported |
+| JSON Library | Newtonsoft.Json | System.Text.Json |
+| JSON Serialization | Runtime-based | Source-generated |
+| User Field Handling | Original conversion | Custom JSON converters |
+| Pipe Connection | No timeout | Five-second timeout |
+| Trimming | Not supported | Supported |
 
-3. **`EnumStringConverter<T>`** - 处理枚举字段（flags、premium_type）
-   ```csharp
-   // Discord 返回："flags":0 或 "flags":"0"
-   // C# 期望：Flag Flags (枚举)
-   ```
+## Requirements
 
-4. **命名管道超时修复** - 添加 5 秒连接超时防止无限阻塞：
-   ```csharp
-   _stream.Connect(5000); // 原为：Connect(0)
-   ```
+- .NET 10.0 or later.
+- Discord Desktop Client running.
 
-5. **枚举序列化** - 为 `Command` 和 `ServerEvent` 枚举添加 `JsonStringEnumConverter<T>` 以支持 Discord 协议。
+## Native AOT Publishing
 
-### 与原版的主要差异
+To publish an application using Native AOT, run:
 
-| 特性 | 原版 | 此 Fork |
-|---------|----------|--------|
-| Native AOT | ❌ 不支持 | ✅ 完全兼容 |
-| JSON 库 | Newtonsoft.Json | System.Text.Json (源生成) |
-| User 字段类型 | 运行时转换 | 编译时转换器 |
-| 管道连接 | 无超时 | 5 秒超时 |
-| 裁剪 | 不可裁剪 | 完全可裁剪 |
-
-## 📋 要求
-
-- .NET 9.0 或更高版本
-- Discord 桌面客户端运行中
-
-## 🛠️ Native AOT 发布
+bash
 
 ```bash
 dotnet publish -c Release -r win-x64 --self-contained
 ```
 
-## 📄 许可证
+Replace `win-x64` with the appropriate runtime identifier for your target platform.
 
-MIT 许可证 - 与原始 [discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp) 项目相同。
+## Releasing
 
-## 🙏 致谢
+The package is published to NuGet.org automatically by `.github/workflows/publish.yml` when a GitHub Release is published, using OIDC trusted publishing (no stored API key).
 
-- 原始库：[Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp)
-- Native AOT 适配：[samse1337](https://github.com/samse1337)
+To release a new version:
 
-## 🐛 问题反馈
+1. Bump `<Version>` in `DiscordRPC-NativeAOT.csproj`.
+2. Commit and push.
+3. Draft and publish a GitHub Release (tag it `v<version>`, matching the csproj version).
 
-如果遇到 Native AOT 兼容性问题，请在 [GitHub Issues](https://github.com/samse1337/DiscordRPC-NativeAOT/issues) 上报告。
+Before the first automated release, add a trusted publishing policy on [nuget.org](https://www.nuget.org) pointing at this repository and the `publish.yml` workflow, and set a `NUGET_USER` Actions secret to your nuget.org account name.
+
+## License
+
+This project is licensed under the MIT License, following the original [discord-rpc-csharp](<https://github.com/Lachee/discord-rpc-csharp>) project.
+
+See the LICENSE file for details.
+
+## Credits
+
+Original project: [Lachee/discord-rpc-csharp](<https://github.com/Lachee/discord-rpc-csharp>).
+
+This fork contains modifications for Native AOT compatibility, JSON serialization, and connection handling.
+
+## Issues
+
+Report bugs and compatibility issues through the [GitHub Issues](<https://github.com/Froststrap/DiscordRPC-NativeAOT>) page.
