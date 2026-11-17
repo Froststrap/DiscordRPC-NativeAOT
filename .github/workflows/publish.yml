@@ -1,19 +1,30 @@
 name: Publish to NuGet
 
 on:
-  release:
-    types: [published]
+  # Runs after the "Build" workflow finishes.
+  workflow_run:
+    workflows: ["Build"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
+  id-token: write
 
 jobs:
   publish:
+    # Only publish when a "v*" tag was pushed and the Build workflow succeeded.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       startsWith(github.event.workflow_run.head_branch, 'v'))
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -33,4 +44,5 @@ jobs:
         run: |
           dotnet nuget push "./artifacts/*.nupkg" \
             --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
-            --source https://api.nuget.org/v3/index.json
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate

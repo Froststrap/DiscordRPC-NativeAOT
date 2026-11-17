@@ -132,15 +132,25 @@ Replace `win-x64` with the appropriate runtime identifier for your target platfo
 
 ## Releasing
 
-The package is published to NuGet.org automatically by `.github/workflows/publish.yml` when a GitHub Release is published, using OIDC trusted publishing (no stored API key).
+Two workflows handle releases:
+
+1. `.github/workflows/build.yml` runs on every push and pull request. It restores, builds, tests, and packs the project. When you push a tag that starts with `v` (for example `v1.0.0`) and the build succeeds, it also creates the matching GitHub Release.
+2. `.github/workflows/publish.yml` runs after `build.yml` finishes. When the trigger was a `v*` tag and the build succeeded, it packs and pushes the package to NuGet.org using OIDC trusted publishing (no stored API key).
 
 To release a new version:
 
 1. Bump `<Version>` in `DiscordRPC-NativeAOT.csproj`.
 2. Commit and push.
-3. Draft and publish a GitHub Release (tag it `v<version>`, matching the csproj version).
+3. Push a tag matching that version, for example:
 
-Before the first automated release, add a trusted publishing policy on [nuget.org](https://www.nuget.org) pointing at this repository and the `publish.yml` workflow, and set a `NUGET_USER` Actions secret to your nuget.org account name.
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+
+That creates the GitHub Release and publishes the package automatically.
+
+Before the first automated release, add a trusted publishing policy on [nuget.org](https://www.nuget.org) pointing at this repository and the `publish.yml` workflow file, and set a `NUGET_USER` repository secret in GitHub to the nuget.org username of the person who created that policy.
 
 ## License
 
